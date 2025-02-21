@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
 import {ProductType} from './types/product.type';
 import {FormsModule} from '@angular/forms';
+import {ProductComponent} from './components/product/product.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgForOf, FormsModule, NgIf],
+  imports: [RouterOutlet, NgForOf, FormsModule, NgIf, ProductComponent],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -15,34 +16,39 @@ export class AppComponent {
   advantages = [
     {
       title: 'Лучшие продукты',
-      description: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты ароматизаторы и красители.'
+      description: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты ароматизаторы и красители.',
     },
     {
       title: 'Много вкусов',
-      description: ' Наша задача – предоставить вам широкое разнобразие вкусов. Вы удивитесь, но у нас более 70 вкусов пироженок..'
+      description: ' Наша задача – предоставить вам широкое разнобразие вкусов. Вы удивитесь, но у нас более 70 вкусов пироженок..',
+
     },
     {
       title: 'Бисквитное тесто',
-      description: ' Все пирожные готовятся на бисквитном тесте с качественным сливочным маслом 82,5%. В составе нет маргарина и дрожжей!.'
+      description: ' Все пирожные готовятся на бисквитном тесте с качественным сливочным маслом 82,5%. В составе нет маргарина и дрожжей!.',
     },
     {
       title: ' Честный продукт',
-      description: 'Вкус, качество и безопасность наших пирогов подтверждена декларацией о соответствии, которую мы получили 22.06.2016 г.'
+      description: 'Вкус, качество и безопасность наших пирогов подтверждена декларацией о соответствии, которую мы получили 22.06.2016 г.',
     },
   ]
 
   products: ProductType[] = [
     {
       title:"Макарун с малиной",
+      image: "1"
     },
     {
       title:"Макарун с манго",
+      image: "2"
     },
     {
       title:"Пирог с ванилью",
+      image: "3"
     },
     {
       title:"Пирог с фисташками",
+      image: "4"
     },
   ]
 

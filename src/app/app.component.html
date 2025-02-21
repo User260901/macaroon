@@ -111,27 +111,7 @@
       Выберите свой макарун
     </h2>
     <div class="products__items">
-      <div class="products__item" *ngFor="let product of products; let i = index">
-        <div class="products__image">
-          <img src="/images/products/{{i + 1}}.png" alt="Macaroon">
-        </div>
-        <div class="products__name">
-          {{product.title}}
-        </div>
-        <div class="products__info">
-          <div class="products__description">
-            <div class="products__weight">
-              1 шт.
-            </div>
-            <div class="products__price">
-              1,70 руб.
-            </div>
-          </div>
-          <div class="products__action">
-            <button class="btn products__btn" (click)="addToCart(product, orderElement)">Заказать</button>
-          </div>
-        </div>
-      </div>
+      <product *ngFor="let product of products" [product]="product" ></product>
     </div>
   </div>
 </section>

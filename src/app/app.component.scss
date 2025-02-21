@@ -105,16 +105,7 @@
   margin-bottom: 80px;
 }
 
-.btn {
-  background-image: -moz-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%);
-  background-image: -webkit-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%);
-  background-image: -ms-linear-gradient(90deg, rgb(113, 8, 30) 0%, rgb(215, 72, 92) 100%);
-  font-family: GilroyBold, sans-serif;
-  color: rgb(255, 255, 255);
-  border: 0;
-  border-radius: 50px;
-  cursor: pointer;
-}
+
 
 .btn:hover {
   box-shadow: 0 5px 9px 1px rgba(130, 19, 40, 0.5);
