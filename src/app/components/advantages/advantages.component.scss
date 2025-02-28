@@ -1,0 +1,42 @@
+.advantages__step {
+  background-color: #821328;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  font-size: 60px;
+  font-family: GilroyExtraBold, sans-serif;
+  color: rgb(255, 255, 255);
+  position: relative;
+  transition: 0.5s ease;
+  margin-bottom: 13px;
+}
+
+.advantages__step:hover {
+  background-color: #eba8b1;
+  color: #821328;;
+
+}
+
+.advantages__step-number {
+  position: absolute;
+  bottom: -21px;
+  left: 19px;
+}
+
+.advantages__item-title {
+  font-size: 20px;
+  font-family: GilroyExtraBold, sans-serif;
+  color: rgb(51, 25, 7);
+  margin-bottom: 20px;
+}
+
+.advantages__item-description {
+  font-size: 15px;
+  font-family: GilroyMedium, sans-serif;
+  color: rgb(51, 25, 7);
+  line-height: 1.333;
+}
+
+.advantages__item-title {
+  margin-top: 13px;
+}

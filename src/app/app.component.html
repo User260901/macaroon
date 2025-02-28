@@ -43,7 +43,7 @@
       </ul>
     </nav>
     <div class="contacts header__contacts">
-      {{ phoneNumber }}
+      {{ phoneNumber | validPhoneN }}
     </div>
   </div>
 </header>
@@ -89,19 +89,11 @@
 
 <section class="advantages">
   <div class="container advantages__container">
-    <div class="advantages__item" *ngFor="let advantage of advantages; let i = index">
-      <div class="advantages__step">
-                <span class="advantages__step-number">
-                    {{i + 1}}
-                </span>
-      </div>
-      <div class="advantages__item-title">
-        {{advantage.title}}
-      </div>
-      <div class="advantages__item-description">
-        {{advantage.description}}
-      </div>
-    </div>
+    <advantages *ngFor="let advantage of advantages; let i = index"
+                [advantages]="advantage"
+                [index]="i"
+
+    ></advantages>
   </div>
 </section>
 
@@ -111,7 +103,7 @@
       Выберите свой макарун
     </h2>
     <div class="products__items">
-      <product *ngFor="let product of products" [product]="product" ></product>
+      <product *ngFor="let product of products" [product]="product" (eventEmitter)="changes($event)"></product>
     </div>
   </div>
 </section>
@@ -162,19 +154,34 @@
       </div>
     </a>
     <div class="contacts footer__contacts">
-      +375 (29) 368-98-68
+      {{ phoneNumber | validPhoneN }}
     </div>
 
   </div>
 </footer>
 
 
-<div class="gift" *ngIf="showPresent">
-  <div class="gift__image">
-    <img src="/images/present.png" alt="Present">
+<!--<div class="gift" *ngIf="showPresent">-->
+<!--  <div class="cart-items">-->
+<!--    Hello-->
+<!--  </div>-->
+<!--  <div class="gift__image">-->
+<!--    <img src="/images/cart.png" alt="Present">-->
+<!--  </div>-->
+<!--  <div class="gift__text">-->
+<!--    Оформите заказ-->
+<!--    и получите подарок!-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="cart" *ngIf="showPresent">
+  <div class="cart-items">
+    {{productItems}}
   </div>
-  <div class="gift__text">
-    Оформите заказ
-    и получите подарок!
+  <div class="cart-image">
+    <img src="/images/cart.png" alt="Present">
+  </div>
+  <div class="cart-text">
+    {{productPrice / 10 | currency: 'Руб' : 'symbol' : '1.1-1' : 'ru' }}
   </div>
 </div>

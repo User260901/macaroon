@@ -11,11 +11,15 @@
         1 шт.
       </div>
       <div class="products__price">
-        1,70 руб.
+        {{product.price / 100 | currency: 'Руб' : 'symbol' : '1.2-2' : 'ru' }}
       </div>
+
     </div>
     <div class="products__action">
-      <button class="btn products__btn">Заказать</button>
+      <button class="btn products__btn" (click)="addToCart()" CoolButton
+      [CoolButtonDefaultBgColor]="'red'"
+      [CoolButtonHoverBgColor]="'black'"
+      >Заказать</button>
     </div>
   </div>
 </div>

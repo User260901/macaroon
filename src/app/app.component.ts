@@ -1,22 +1,31 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {NgForOf, NgIf} from '@angular/common';
+import {CurrencyPipe, NgForOf, NgIf} from '@angular/common';
 import {ProductType} from './types/product.type';
 import {FormsModule} from '@angular/forms';
 import {ProductComponent} from './components/product/product.component';
+import {ProductsService} from './services/products.service';
+import {CartProductsService} from './services/cart-products.service';
+import {AdvantagesComponent} from './components/advantages/advantages.component';
+import {AdvantagesType} from './types/advantages.type';
+import {CoolButtonDirective} from './directives/cool-button.directive';
+import localeRu from '@angular/common/locales/ru';
+import {ValidPhoneNPipe} from './pipes/valid-phone-n.pipe';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgForOf, FormsModule, NgIf, ProductComponent],
+  imports: [RouterOutlet, NgForOf, FormsModule, NgIf, ProductComponent, AdvantagesComponent, CoolButtonDirective, CurrencyPipe, ValidPhoneNPipe],
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers: [{provide: ProductsService}]
 })
-export class AppComponent {
-  advantages = [
+export class AppComponent implements OnInit{
+  advantages:AdvantagesType[] = [
     {
       title: 'Лучшие продукты',
-      description: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты ароматизаторы и красители.',
+      description: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты ароматизаторы и красители. Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты ароматизаторы и красители. Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты ароматизаторы и красители',
     },
     {
       title: 'Много вкусов',
@@ -32,40 +41,39 @@ export class AppComponent {
       description: 'Вкус, качество и безопасность наших пирогов подтверждена декларацией о соответствии, которую мы получили 22.06.2016 г.',
     },
   ]
+  products: ProductType[] = []
 
-  products: ProductType[] = [
-    {
-      title:"Макарун с малиной",
-      image: "1"
-    },
-    {
-      title:"Макарун с манго",
-      image: "2"
-    },
-    {
-      title:"Пирог с ванилью",
-      image: "3"
-    },
-    {
-      title:"Пирог с фисташками",
-      image: "4"
-    },
-  ]
+  productItems: number = 0
+  productPrice: number = 0
+
+  constructor(private _ProductService:ProductsService, private _CartProductsService: CartProductsService) {
+    this.productItems = this._CartProductsService.itemsInCart
+  }
+
+  ngOnInit() {
+    this.products = this._ProductService.getProducts()
+  }
 
   public formValues = {
     productTitle: '',
+  }
+
+  changes(item:string){
+    this.productItems = this._CartProductsService.itemsInCart
+    this.productPrice = this._CartProductsService.totalPrice
+    alert(item + " добавлен в корзину!")
   }
 
   public scrollTo(target: HTMLElement): void {
     target.scrollIntoView({behavior: "smooth"})
   }
 
-  public addToCart(product: ProductType, target:HTMLElement ):void {
-    this.scrollTo(target)
-    this.formValues.productTitle = product.title
-  }
+  // public addToCart(product: ProductType, target:HTMLElement ):void {
+  //   this.scrollTo(target)
+  //   this.formValues.productTitle = product.title
+  // }
 
   showPresent = true
   href = 'https://instagram.com'
-  phoneNumber = '+375 (29) 368-98-68'
+  phoneNumber = '375293689868'
 }
